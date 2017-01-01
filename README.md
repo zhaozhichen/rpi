@@ -1,2 +1,1 @@
-# rpi
 # Raspberry Pi projects
