@@ -9,5 +9,16 @@ echo "========== mencoder finished, start MP4Box =========="
 MP4Box -add $DATE.avi ../videos/$DATE.mp4
 echo "========== MP4Box finishes =========="
 rm $DATE.avi
-rm *.jpg
+if [ ! -z "$1" ];
+then
+    if [ $1 = "-r" ];
+    then
+        rm *.jpg
+        echo "========== raw images removed =========="
+    else
+        echo "========== wrong arg, only support: -r =========="
+    fi
+else
+    echo "========== raw images NOT removed. set -r if need to remove =========="
+fi
 cd ..
