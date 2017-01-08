@@ -1,0 +1,16 @@
+make -f tensorflow/contrib/pi_examples/camera/Makefile
+sudo apt-get install flite
+tensorflow/contrib/pi_examples/camera/gen/bin/camera | xargs -n1 flite -t
+raspivid -o test.h264 -t 10000
+sudo apt-get install gpac
+MP4Box -add test.h264 test.mp4
+raspistill 2>&1 | less
+ls *.jpg > stills.txt
+mencoder -nosound -ovc lavc -lavcopts vcodec=mpeg4:aspect=16/9:vbitrate=8000000 -vf scale=1920:1080 -o timelapse.avi -mf type=jpeg:fps=24 mf://@stills.txt
+omxplayer 2016-12-25.mp4
+log to b@B remember password, at client:  cat .ssh/id_rsa.pub | ssh b@B 'cat >> .ssh/authorized_keys'
+df -h
+du -h
+
+arduino in command line: platformio
+http://blog.cudmore.io/post/2016/02/13/Programming-an-arduino-with-platformio/
