@@ -2,12 +2,12 @@ import serial,os
 from time import sleep
 port=os.popen('ls /dev/ttyACM*').read()[:-1]
 ser = serial.Serial(port, 9600)
-while 1:
+while True:
     inkey = raw_input()
     if inkey == "w":
         print '----- Forward -----'
         ser.write('F')
-    if inkey == "x":
+    if inkey == "s":
         print '----- Backward -----'
         ser.write('B')
     if inkey == "a":
@@ -16,6 +16,12 @@ while 1:
     if inkey == "d":
         print '----- Turn Right -----'
         ser.write('R')
-    if inkey == "s":
+    if inkey == "j":
         print '----- Halt -----'
         ser.write('H')
+    if inkey == "u":
+        print '----- Servo Up -----'
+        ser.write('U')
+    if inkey == "n":
+        print '----- Servo Down -----'
+        ser.write('D')

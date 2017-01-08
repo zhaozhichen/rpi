@@ -1,12 +1,17 @@
 #include "Arduino.h"
+#include <Servo.h>
 
 #define EN1  5//control right motor speed
 #define EN2  6//control left motor speed
 #define IN1  4//control right motor direction
 #define IN2  7//control left motor direction
+#define pinServo A0
 #define FORW 1//forward
 #define BACK 0//backward
 #define SPEED 255//0-255
+
+Servo myservo;
+int angle;
 
 void MotorControl(int M1_DIR,int M1_EN,int M2_DIR,int M2_EN)
 {
@@ -37,6 +42,7 @@ void setup()
   pinMode(EN2, OUTPUT);
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
+  myservo.attach(10);
 }
 
 void loop()
@@ -60,6 +66,14 @@ void loop()
             break;
       case 'R':
             MotorControl(FORW,SPEED,BACK,SPEED);
+            break;
+      case 'U':
+            angle = myservo.read();
+            myservo.write(min(angle + 5,180));
+            break;
+      case 'D':
+            angle = myservo.read();
+            myservo.write(max(angle - 5,0));
             break;
       default:
             break;      
