@@ -5,11 +5,10 @@
 #define EN2  6//control left motor speed
 #define IN1  4//control right motor direction
 #define IN2  7//control left motor direction
-#define pinServo A0
 #define FORW 1//forward
 #define BACK 0//backward
 #define SPEED 255//0-255
-#define DELAYSEC 100
+#define DELAYSEC 50
 
 Servo myservo;
 int angle;
