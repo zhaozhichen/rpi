@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#https://rosettacode.org/wiki/Keyboard_input/Keypress_check#Python
 
 import __future__
 import sys
