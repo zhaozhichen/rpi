@@ -8,7 +8,7 @@
 #define FORW 1//forward
 #define BACK 0//backward
 #define SPEED 255//0-255
-#define DELAYSEC 50
+#define DELAYSEC 10
 
 Servo myservo;
 int angle;
