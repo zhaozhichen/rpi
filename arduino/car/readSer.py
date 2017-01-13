@@ -1,23 +1,25 @@
 import serial,os
 import readchar
-from time import sleep
+import keypress
+
 port=os.popen('ls /dev/ttyACM*').read()[:-1]
 ser = serial.Serial(port, 9600)
-while True:
-    inkey = readchar.readchar()
-    if inkey == "w":
-        ser.write('F')
-    if inkey == "s":
-        ser.write('B')
-    if inkey == "a":
-        ser.write('L')
-    if inkey == "d":
-        ser.write('R')
-    if inkey == "j":
-        ser.write('H')
-    if inkey == "u":
-        ser.write('U')
-    if inkey == "n":
-        ser.write('D')
-    if inkey == "q":
-        break
+kp=keypress.KeyPress()
+
+fnHalt      = lambda:ser.write('H')
+fnForward   = lambda:ser.write('F')
+fnBackward  = lambda:ser.write('B')
+fnTurnLeft      = lambda:ser.write('L')
+fnTurnRight     = lambda:ser.write('R')
+fnServoUp   = lambda:ser.write('U')
+fnServoDown = lambda:ser.write('D')
+kp.registerDefaultHandler(fnHalt)
+kp.registerHandlers({\
+    'w':fnForward,\
+    's':fnBackward,\
+    'a':fnTurnLeft,\
+    'd':fnTurnRight,\
+    'q':fnServoUp,\
+    'e':fnServoDown}
+kp.registerQuitKey('q')
+kp.start()
