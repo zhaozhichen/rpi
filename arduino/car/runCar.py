@@ -9,17 +9,21 @@ kp=keypress.KeyPress()
 fnHalt      = lambda:ser.write('H')
 fnForward   = lambda:ser.write('F')
 fnBackward  = lambda:ser.write('B')
-fnTurnLeft      = lambda:ser.write('L')
-fnTurnRight     = lambda:ser.write('R')
+fnTurnLeft  = lambda:ser.write('L')
+fnTurnRight = lambda:ser.write('R')
 fnServoUp   = lambda:ser.write('U')
 fnServoDown = lambda:ser.write('D')
-kp.registerDefaultHandler(fnHalt)
-kp.registerHandlers({\
+
+keyMap = {\
     'w':fnForward,\
     's':fnBackward,\
     'a':fnTurnLeft,\
     'd':fnTurnRight,\
-    'q':fnServoUp,\
-    'e':fnServoDown}
+    'j':fnServoUp,\
+    'k':fnServoDown,\
+    'x':fnHalt}
+
 kp.registerQuitKey('q')
+kp.registerDefaultHandler(fnHalt)
+kp.registerHandlers(keyMap)
 kp.start()

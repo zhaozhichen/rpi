@@ -8,7 +8,8 @@
 #define FORW 1//forward
 #define BACK 0//backward
 #define SPEED 255//0-255
-#define DELAYSEC 10
+#define SERVOANGLE 0.1
+// #define DELAYSEC 10
 
 Servo myservo;
 int angle;
@@ -57,31 +58,23 @@ void loop()
             break;     
       case 'F':
             MotorControl(FORW,SPEED,FORW,SPEED);
-            delay(DELAYSEC);
-            MotorControl(FORW,0,FORW,0);
             break;
       case 'B':
             MotorControl(BACK,SPEED,BACK,SPEED);
-            delay(DELAYSEC);
-            MotorControl(FORW,0,FORW,0);
             break;
       case 'L':
             MotorControl(BACK,SPEED,FORW,SPEED);
-            delay(DELAYSEC);
-            MotorControl(FORW,0,FORW,0);
             break;
       case 'R':
             MotorControl(FORW,SPEED,BACK,SPEED);
-            delay(DELAYSEC);
-            MotorControl(FORW,0,FORW,0);
             break;
       case 'U':
             angle = myservo.read();
-            myservo.write(min(angle + 5,180));
+            myservo.write(min(angle + SERVOANGLE,180));
             break;
       case 'D':
             angle = myservo.read();
-            myservo.write(max(angle - 5,0));
+            myservo.write(max(angle - SERVOANGLE,0));
             break;
       default:
             break;      
