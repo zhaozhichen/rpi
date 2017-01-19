@@ -1,0 +1,2 @@
+* * * * * /home/pi/rpi/camera/camera.sh 2>&1
+50 23 * * * /home/pi/rpi/camera/genlapse.sh -r > /home/pi/rpi/camera/out.log 2>&1

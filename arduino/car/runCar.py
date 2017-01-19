@@ -16,14 +16,13 @@ fnServoDown = lambda:ser.write('D')
 
 keyMap = {\
     'w':fnForward,\
-    's':fnBackward,\
+    'x':fnBackward,\
     'a':fnTurnLeft,\
     'd':fnTurnRight,\
     'j':fnServoUp,\
     'k':fnServoDown,\
-    'x':fnHalt}
+    's':fnHalt}
 
 kp.registerQuitKey('q')
-kp.registerDefaultHandler(fnHalt)
 kp.registerHandlers(keyMap)
 kp.start()

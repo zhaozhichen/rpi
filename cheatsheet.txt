@@ -14,3 +14,9 @@ du -h
 
 arduino in command line: platformio
 http://blog.cudmore.io/post/2016/02/13/Programming-an-arduino-with-platformio/
+compile platformio: pio run
+upload to arduino: pio run --target upload
+
+tight vnc:
+on rpi, run: tightvncserver
+on mac, Finder -> Go -> Connect to Server: vnc://raspberrypi.local:5901
