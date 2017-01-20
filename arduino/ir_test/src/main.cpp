@@ -3,13 +3,10 @@
 
 #include <IrReceiverSampler.h>
 #include <Nec1Decoder.h>
-#include <string.h>
 
 #define RECEIVE_PIN 8
 #define BUFFERSIZE 200U
 #define BAUD 115200
-
-using namespace std;
 
 IrReceiver *receiver;
 
@@ -22,15 +19,17 @@ void loop() {
     receiver->receive();
 
     if (receiver->isEmpty())
-        Serial.println(F("timeout"));
+        // Serial.println(F("timeout"));
+    {}
     else {
         Nec1Decoder decoder(*receiver);
         if (decoder.isValid()){
-            //decoder.printDecode(Serial);
-            std::string test="abc";
-            Serial.println(decoder.getDecode());
+            const char * strDec = decoder.getDecode();
+            Serial.println(strDec);
+            // decoder.printDecode(Serial);
         }
         else
-            Serial.println(F("No decode"));
+            // Serial.println(F("No decode"));
+            {}
     }
 }

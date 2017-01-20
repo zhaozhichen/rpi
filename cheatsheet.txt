@@ -37,3 +37,6 @@ pio init -b uno
 compile: pio run
 upload: pio run --target upload
 
+Another command line tool for Arduino:
+http://inotool.org/quickstart
+ino build -cppflags="-std=c++0x"
