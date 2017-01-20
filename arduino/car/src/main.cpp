@@ -13,7 +13,7 @@
 #define FORW 1//forward
 #define BACK 0//backward
 #define SPEED 255//0-255
-#define SERVOANGLE 1
+#define SERVOANGLE 5
 
 #define KEY_REPEAT "NEC1 ditto"
 #define KEY_POWER "NEC1 0 69"
@@ -73,26 +73,29 @@ void setup()
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   myservo.attach(SERVO_PIN);
-  receiver = IrReceiverSampler::newIrReceiverSampler(BUFFERSIZE, IR_PIN);
+  receiver = IrReceiverSampler::newIrReceiverSampler
+      (BUFFERSIZE, IR_PIN, false, 50, 500);
 }
 
 void loop()
 {
     receiver->receive();
     if (receiver->isEmpty())
-    {}
+        MotorControl(FORW,0,FORW,0);
     else {
         Nec1Decoder decoder(*receiver);
         const char * thisKey = decoder.getDecode();
         if (!strcmp(thisKey,KEY_REPEAT))
             thisKey = lastKey;
-        else if (!strcmp(thisKey,KEY_FOUR))
+        else if (!strcmp(thisKey,KEY_BACK))
+            MotorControl(FORW,0,FORW,0);
+        else if (!strcmp(thisKey,KEY_MODE))
             MotorControl(FORW,SPEED,FORW,SPEED);
-        else if (!strcmp(thisKey,KEY_SIX))
+        else if (!strcmp(thisKey,KEY_MINUS))
             MotorControl(BACK,SPEED,BACK,SPEED);
-        else if (!strcmp(thisKey,KEY_EIGHT))
+        else if (!strcmp(thisKey,KEY_PLAY))
             MotorControl(BACK,SPEED,FORW,SPEED);
-        else if (!strcmp(thisKey,KEY_TWO))
+        else if (!strcmp(thisKey,KEY_FWD))
             MotorControl(FORW,SPEED,BACK,SPEED);
         else if (!strcmp(thisKey,KEY_POWER)){
             angle = myservo.read();

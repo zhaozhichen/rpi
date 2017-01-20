@@ -40,3 +40,7 @@ upload: pio run --target upload
 Another command line tool for Arduino:
 http://inotool.org/quickstart
 ino build -cppflags="-std=c++0x"
+
+live stream
+https://blog.miguelgrinberg.com/post/stream-video-from-the-raspberry-pi-camera-to-web-browsers-even-on-ios-and-android
+manually install imagemagic: https://www.imagemagick.org/script/install-source.php
