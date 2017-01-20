@@ -7,8 +7,8 @@
 #define EN2  6//control left motor speed
 #define IN1  4//control right motor direction
 #define IN2  7//control left motor direction
-#define SERVO_PIN
-#define RECEIVE_PIN 8
+#define SERVO_PIN 10
+#define IR_PIN 8
 #define BUFFERSIZE 200U
 #define FORW 1//forward
 #define BACK 0//backward
@@ -63,6 +63,9 @@ void MotorControl(int M1_DIR,int M1_EN,int M2_DIR,int M2_EN)
     analogWrite(EN2,M2_EN);
 }
 
+IrReceiver *receiver;
+const char *lastKey;
+
 void setup()
 {
   pinMode(EN1, OUTPUT);
@@ -70,8 +73,7 @@ void setup()
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   myservo.attach(SERVO_PIN);
-  receiver = IrReceiverSampler::newIrReceiverSampler(BUFFERSIZE, RECEIVE_PIN);
-  const char * lastKey = ""
+  receiver = IrReceiverSampler::newIrReceiverSampler(BUFFERSIZE, IR_PIN);
 }
 
 void loop()
@@ -80,43 +82,26 @@ void loop()
     if (receiver->isEmpty())
     {}
     else {
+        Nec1Decoder decoder(*receiver);
         const char * thisKey = decoder.getDecode();
-
-
-      case 'H':
-            MotorControl(FORW,0,FORW,0);
-            break;     
-      case 'F':
+        if (!strcmp(thisKey,KEY_REPEAT))
+            thisKey = lastKey;
+        else if (!strcmp(thisKey,KEY_FOUR))
             MotorControl(FORW,SPEED,FORW,SPEED);
-            break;
-      case 'B':
+        else if (!strcmp(thisKey,KEY_SIX))
             MotorControl(BACK,SPEED,BACK,SPEED);
-            break;
-      case 'L':
+        else if (!strcmp(thisKey,KEY_EIGHT))
             MotorControl(BACK,SPEED,FORW,SPEED);
-            break;
-      case 'R':
+        else if (!strcmp(thisKey,KEY_TWO))
             MotorControl(FORW,SPEED,BACK,SPEED);
-            break;
-      case 'U':
+        else if (!strcmp(thisKey,KEY_POWER)){
             angle = myservo.read();
             myservo.write(min(angle + SERVOANGLE,180));
-            break;
-      case 'D':
+        }
+        else if (!strcmp(thisKey,KEY_MUTE)){
             angle = myservo.read();
             myservo.write(max(angle - SERVOANGLE,0));
-            break;
-      default:
-            break;      
-            }
+        }
+        lastKey = thisKey;
     }
   }
-}
-
-
-
-
-
-
-
-
