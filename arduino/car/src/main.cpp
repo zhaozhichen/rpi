@@ -43,7 +43,7 @@ int angle;
 
 void MotorControl(int M1_DIR,int M1_EN,int M2_DIR,int M2_EN)
 {
-  //////////M1////////////////////////
+  //M1
   if(M1_DIR==FORW)//Motor 1 direction
     digitalWrite(IN1,HIGH);
   else
@@ -52,7 +52,7 @@ void MotorControl(int M1_DIR,int M1_EN,int M2_DIR,int M2_EN)
     analogWrite(EN1,LOW);//stop
   else
     analogWrite(EN1,M1_EN);//analog value of speed
-  ///////////M2//////////////////////
+  //M2
   if(M2_DIR==FORW)
     digitalWrite(IN2,HIGH);
   else
