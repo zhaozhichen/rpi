@@ -13,7 +13,7 @@
 #define FORW 1//forward
 #define BACK 0//backward
 #define SPEED 255//0-255
-#define SERVOANGLE 5
+#define SERVOANGLE 5//servo angle change per key press
 
 #define KEY_REPEAT "NEC1 ditto"
 #define KEY_POWER "NEC1 0 69"
