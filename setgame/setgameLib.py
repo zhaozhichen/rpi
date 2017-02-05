@@ -60,10 +60,10 @@ def find_closest_card(training,img):
     features = preprocess(img)
     return sorted(training.values(), key=lambda x:imgdiff(x,features))[0][0]
 
+# return list of images (cards) in given image file
 def getCards(imgfile):
     im = cv2.imread(imgfile)
     gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
-    #blur = cv2.GaussianBlur(gray,(1,1),0)
     flag, thresh = cv2.threshold(gray, 120, 255, cv2.THRESH_BINARY)
     im2, contours, hierarchy = \
         cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
@@ -82,18 +82,14 @@ def getCards(imgfile):
         if newArea<lastArea * 0.5:
             break
         lastArea = newArea
-        # approx2 = np.array(rect.reshape((4,2)),np.float32)
-        # rect = cv2.minAreaRect(contours[2])
-        # r = cv2.boxPoints(rect)
         h = np.array([ [0,0],[290,0],[290,449],[0,449] ],np.float32)
         transform = cv2.getPerspectiveTransform(rect,h)
         warp = cv2.warpPerspective(im,transform,(290,450))
-        resCards.append(warp)
+        blur = cv2.GaussianBlur(warp,(5,5),0)
+        resCards.append(blur)
     return resCards
-        #warp = cutEdge(warp,5)
-        #savefile = "images/decomp"+str(i)+".jpg"
-        #cv2.imwrite(savefile,warp)
 
+# run batch getCards
 def train(trainSet):
     resTrain = []
     for trainImg in trainSet:
