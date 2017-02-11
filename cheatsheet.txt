@@ -5,6 +5,7 @@ sudo apt-get upgrade
 sudo rpi-update
 
 install driver for wifi / bluetooth adaptor:
+http://raspberrypi.stackexchange.com/questions/50240/missing-build-file-when-building-for-rtl8812au-driver
 https://edimax.freshdesk.com/support/solutions/articles/14000047172-how-to-install-ew-7611ulb-adapter-on-raspberry-pi
 install driver for camera:
 http://www.geeetech.com/wiki/index.php/Raspberry_Pi_Camera_Module
