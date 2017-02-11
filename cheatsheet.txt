@@ -1,3 +1,14 @@
+Setup new RPI:
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo rpi-update
+
+install driver for wifi / bluetooth adaptor:
+https://edimax.freshdesk.com/support/solutions/articles/14000047172-how-to-install-ew-7611ulb-adapter-on-raspberry-pi
+install driver for camera:
+http://www.geeetech.com/wiki/index.php/Raspberry_Pi_Camera_Module
+
 make -f tensorflow/contrib/pi_examples/camera/Makefile
 sudo apt-get install flite
 tensorflow/contrib/pi_examples/camera/gen/bin/camera | xargs -n1 flite -t
