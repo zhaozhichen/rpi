@@ -1,7 +1,7 @@
 Setup new RPI:
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get dist-upgrade
+#sudo apt-get dist-upgrade
 sudo rpi-update
 
 install driver for wifi / bluetooth adaptor:
