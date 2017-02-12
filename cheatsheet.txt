@@ -11,7 +11,7 @@ http://raspberrypi.stackexchange.com/questions/50240/missing-build-file-when-bui
 
 install driver for camera:
 http://www.geeetech.com/wiki/index.php/Raspberry_Pi_Camera_Module
-
+Note: libjpeg62-dev is no longer in the package. use libjpeg62-turbo-dev instead
 
 
 
