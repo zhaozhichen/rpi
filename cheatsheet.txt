@@ -1,13 +1,18 @@
 Setup new RPI:
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get dist-upgrade
-sudo rpi-update
+#sudo apt-get dist-upgrade
+#sudo rpi-update # don't update firmware yet! wifi/bluetooth adaptor driver not ready with new firmware yet
 
 install driver for wifi / bluetooth adaptor:
 https://edimax.freshdesk.com/support/solutions/articles/14000047172-how-to-install-ew-7611ulb-adapter-on-raspberry-pi
+# deal with new firmware:
+http://raspberrypi.stackexchange.com/questions/50240/missing-build-file-when-building-for-rtl8812au-driver
+
 install driver for camera:
 http://www.geeetech.com/wiki/index.php/Raspberry_Pi_Camera_Module
+Note: libjpeg62-dev is no longer in the package. use libjpeg62-turbo-dev instead
+How to install v4l-utils: https://github.com/gjasny/v4l-utils
 
 make -f tensorflow/contrib/pi_examples/camera/Makefile
 sudo apt-get install flite
