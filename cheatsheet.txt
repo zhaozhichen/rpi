@@ -91,3 +91,6 @@ ifconfig | mail -s "raspi inconfig" zhaozhichen@gmail.com
 
 #dropbox uploader
 https://github.com/andreafabrizi/Dropbox-Uploader
+
+#email ifconfig on startup
+@reboot /bin/sleep 60; /home/pi/rpi/sendIP.sh 2>&1
