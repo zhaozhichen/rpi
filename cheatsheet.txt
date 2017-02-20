@@ -60,3 +60,33 @@ ino build -cppflags="-std=c++0x"
 live stream
 https://blog.miguelgrinberg.com/post/stream-video-from-the-raspberry-pi-camera-to-web-browsers-even-on-ios-and-android
 manually install imagemagic: https://www.imagemagick.org/script/install-source.php
+
+# install mencoder:
+wget http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2
+tar xavf mplayer-export-snapshot.tar.bz2
+cd mplayer-export-2016-03-26/
+<need to install ffmpeg>
+./configure
+make
+< ... wait a long time here ...>
+./mencoder
+sudo make install
+
+# install MP4Box:
+sudo apt-get install gpac
+which MP4Box
+
+#send mail
+sudo apt-get install ssmtp
+#add following to /etc/ssmtp/ssmtp.conf:
+root=me@gmail.com
+mailhub=smtp.gmail.com:587
+hostname=raspberrypi
+FromLineOverride=YES
+AuthUser=me@gmail.com
+AuthPass=mypass
+UseSTARTTLS=YES
+#add following to /etc/ssmtp/
+root:me@gmail.com:mail.google.com:587
+#add following to /etc/rc.local:
+ifconfig | mail -s "raspi inconfig" zhaozhichen@gmail.com
