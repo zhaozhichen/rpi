@@ -88,3 +88,6 @@ UseSTARTTLS=YES
 root:me@gmail.com:mail.google.com:587
 #add following to /etc/rc.local:
 ifconfig | mail -s "raspi inconfig" zhaozhichen@gmail.com
+
+#dropbox uploader
+https://github.com/andreafabrizi/Dropbox-Uploader
