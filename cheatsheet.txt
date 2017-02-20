@@ -67,9 +67,7 @@ tar xavf mplayer-export-snapshot.tar.bz2
 cd mplayer-export-2016-03-26/
 <need to install ffmpeg>
 ./configure
-make
 < ... wait a long time here ...>
-./mencoder
 sudo make install
 
 # install MP4Box:
