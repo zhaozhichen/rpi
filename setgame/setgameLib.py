@@ -29,6 +29,7 @@ def lenSq(pt1,pt2):
     y=pt2[1]-pt1[1]
     return x*x+y*y
 
+# cut edge on all four sides - slow
 def cutEdge(imgIn, pixel):
     (lenth,width,depth) = imgIn.shape
     imgOut = np.zeros((lenth-pixel*2,width-pixel*2,depth))
@@ -45,15 +46,17 @@ def preprocess(img):
     thresh = cv2.adaptiveThreshold(blur,255,1,1,11,1)
     return thresh
 
-def imgdiff(img1,img2):
-    diffAll=0
+def imgdiff(imgGBR1,imgGBR2):
+    diffAll = 0
     for i in range(3): # channel BGR
-        img1 = cv2.GaussianBlur(img1[:,:,i],(5,5),0)
-        img2 = cv2.GaussianBlur(img2[:,:,i],(5,5),0)
+        img1 = cv2.GaussianBlur(imgGBR1[:,:,i],(5,5),0)
+        img2 = cv2.GaussianBlur(imgGBR2[:,:,i],(5,5),0)
         diff = cv2.absdiff(img1,img2)
-        diff = cv2.GaussianBlur(diff,(5,5),5)
-        flag, diff = cv2.threshold(diff, 200, 255, cv2.THRESH_BINARY)
-        diffAll += np.sum(diff)
+        blur = cv2.GaussianBlur(diff,(5,5),0)
+        #flag, thresh = cv2.threshold(blur, 200, 255, cv2.THRESH_BINARY)
+        #diffAll += np.sum(blur)
+        diffStd = np.std(blur)
+        diffAll += diffStd * diffStd
     return diffAll
 
 def find_closest_card(training,img):
