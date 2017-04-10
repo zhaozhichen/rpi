@@ -94,3 +94,13 @@ https://github.com/andreafabrizi/Dropbox-Uploader
 
 #email ifconfig on startup
 @reboot /bin/sleep 60; /home/pi/rpi/sendIP.sh 2>&1
+
+#youtube stream:
+v1, avconv (not working on rpi zero) http://www.makeuseof.com/tag/live-stream-youtube-raspberry-pi/
+v2 ,ffmpeg: https://www.digikey.com/en/maker/blogs/streaming-live-to-youtube-and-facebook-using-raspberry-pi-camera/969a7932d47d42a79ba72c81da4d9b66
+Instructions to install ffmpeg:
+https://www.bitpi.co/2015/08/19/how-to-compile-ffmpeg-on-a-raspberry-pi/
+or
+https://www.assetbank.co.uk/support/documentation/install/ffmpeg-debian-squeeze/ffmpeg-debian-jessie/
+You may fail libfaac, instructions: http://raspberrypi.stackexchange.com/questions/10250/how-do-i-install-libfaac-dev-on-raspi
+
