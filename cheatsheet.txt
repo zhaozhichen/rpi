@@ -4,6 +4,13 @@ sudo apt-get upgrade
 #sudo apt-get dist-upgrade
 #sudo rpi-update # don't update firmware yet! wifi/bluetooth adaptor driver not ready with new firmware yet
 
+Fail to find camera:
+sudo modprobe bcm2835-v4l2
+if it works you should get a
+/dev/video0
+reference:
+http://www.richardmudhar.com/blog/2015/02/raspberry-pi-camera-and-motion-out-of-the-box-sparrowcam/
+
 install driver for wifi / bluetooth adaptor:
 https://edimax.freshdesk.com/support/solutions/articles/14000047172-how-to-install-ew-7611ulb-adapter-on-raspberry-pi
 # deal with new firmware:
